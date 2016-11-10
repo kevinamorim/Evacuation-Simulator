@@ -1,4 +1,4 @@
-package agents;
+package services;
 
 public interface IWorld {
 

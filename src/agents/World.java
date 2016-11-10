@@ -1,6 +1,8 @@
 package agents;
 import java.io.Serializable;
 
+import services.IWorld;
+
 @SuppressWarnings("serial")
 public class World implements IWorld, Serializable {
 	protected int size;

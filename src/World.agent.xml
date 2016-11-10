@@ -17,7 +17,7 @@
 	<beliefs>
 		<!-- The game board offers possibilities to make moves,
 			take back moves and keep track of the game history. -->
-		<belief name="board" class="WorldInterface"/>
+		<belief name="world" class="WorldInterface"/>
 
 		<!-- The gui of the game board. -->
 		<belief name="board_gui" class="jadex.commons.gui.GuiCreator">

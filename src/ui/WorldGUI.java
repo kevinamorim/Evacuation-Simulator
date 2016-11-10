@@ -16,9 +16,9 @@ import jadex.commons.future.IntermediateDefaultResultListener;
 import jadex.commons.gui.SGUI;
 import jadex.commons.gui.future.SwingIntermediateResultListener;
 import jadex.commons.transformation.annotations.Classname;
-import javax.swing.JLabel;
+import services.IWorld;
 
-import agents.IWorld;
+import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
