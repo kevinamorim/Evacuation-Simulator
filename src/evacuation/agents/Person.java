@@ -11,7 +11,7 @@ import jadex.micro.annotation.ProvidedServices;
 @Service
 @ProvidedServices(@ProvidedService(type = IChatService.class))
 @Description("Agent Person")
-public class PersonBDI implements IChatService {
+public class Person implements IChatService {
 
 	@Override
 	public void sendMessage(int x, int y) {
