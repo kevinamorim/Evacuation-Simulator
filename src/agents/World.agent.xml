@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  <H3>Person agent.</H3>
+
+-->
+<agent xmlns="http://www.activecomponents.org/jadex-bdi"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.activecomponents.org/jadex-bdi
+	                    http://www.activecomponents.org/jadex-bdi-${jadex_build_version}.xsd"
+	name="World"
+	package="agents">
+
+	<imports>
+		<import>jadex.bdiv3x.runtime.*</import>
+	</imports>
+
+	<beliefs>
+		<!-- The game board offers possibilities to make moves,
+			take back moves and keep track of the game history. -->
+		<belief name="board" class="WorldInterface"/>
+
+		<!-- The gui of the game board. -->
+		<belief name="board_gui" class="jadex.commons.gui.GuiCreator">
+			<fact>new jadex.commons.gui.GuiCreator(WorldGUI.class, new Class[]{jadex.bridge.IExternalAccess.class, WorldInterface.class}, 
+				new Object[]{$scope.getExternalAccess(), $beliefbase.board})</fact>
+		</belief>
+	</beliefs>
+
+	<goals>
+		
+	</goals>
+
+	<plans>
+		<!-- Start puzzling on the board and measure the needed time. -->
+		<plan name="testing">
+			<body class="Testing"/>
+		</plan>
+	</plans>
+
+	<properties>
+	</properties>
+
+	<configurations>
+		<configuration name="Testing" >
+			<beliefs>
+				<initialbelief ref="board">
+ 					<fact>new World(5)</fact>
+				</initialbelief>
+			</beliefs>
+			<plans>
+				<initialplan name="test" ref="testing"/>
+			</plans>
+		</configuration>
+	</configurations>
+</agent>
