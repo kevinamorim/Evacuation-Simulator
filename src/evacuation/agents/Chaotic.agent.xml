@@ -11,70 +11,46 @@
 	xsi:schemaLocation="http://www.activecomponents.org/jadex-bdi
 	                    http://www.activecomponents.org/jadex-bdi-${jadex_build_version}.xsd"
 	name="Chaotic"
-	package="agents">
+	package="evacuation.agents">
 
 	<imports>
 		<import>jadex.bdiv3x.runtime.*</import>
+		<import>evacuation.world.*</import>
 	</imports>
 
 	<beliefs>
-		<!-- The game board offers possibilities to make moves,
-			take back moves and keep track of the game history. -->
-		<belief name="map" class="IMap"/>
+		<belief name="world" class="World"/>
 
-		<!-- The gui of the game board. -->
-		<belief name="board_gui" class="jadex.commons.gui.GuiCreator">
-			<fact>new jadex.commons.gui.GuiCreator(BoardGui.class, new Class[]{jadex.bridge.IExternalAccess.class, IBoard.class}, 
-				new Object[]{$scope.getExternalAccess(), $beliefbase.board})</fact>
-		</belief>
-
-		<!-- The number of moves already tried. -->
-		<belief name="triescnt" class="int">
-			<fact>0</fact>
-		</belief>
-        
-		<!-- The delay in milliseconds between two moves. -->
-		<belief name="move_delay" class="long">
-			<fact>500L</fact>
-		</belief>
-		<!-- The meta-level strategy for choosing moves
- 			(none=choose the first applicable, long=prefer jump moves,
-			same_long=prefer long moves of same color, alter_long=prefer
-			long move of alternate color. -->
-		<belief name="ml" class="String" exported="true">
-			<fact>"same_long"</fact>
+		<belief name="GUI" class="jadex.commons.gui.GuiCreator">
+			<fact>new jadex.commons.gui.GuiCreator(WorldGUI.class, new Class[]{jadex.bridge.IExternalAccess.class, World.class}, 
+				new Object[]{$scope.getExternalAccess(), $beliefbase.world})</fact>
 		</belief>
 	</beliefs>
 
 	<goals>
-		<!-- The goal to make a move on the board that is the solution. -->
-		<achievegoal name="makemove" recalculate="false">
+		<!--<achievegoal name="makemove" recalculate="false">
 			<parameter name="depth" class="int"/>
 			<targetcondition>
-				$beliefbase.board.isSolution()
+				$beliefbase.world.isSolution()
 			</targetcondition>
  		</achievegoal>
 
-		<!-- The meta-level goal for choosing between plans for the makemove goal. -->
 		<metagoal name="choosemove" recalculate="false">
 			<parameterset name="applicables" class="ICandidateInfo"/>
 			<parameterset name="result" class="ICandidateInfo" direction="out"/>
 			<trigger>
 				<goal ref="makemove"/>
 			</trigger>
-		</metagoal>
+		</metagoal>-->
 	</goals>
 
 	<plans>
-		<!-- Start puzzling on the board and measure the needed time. -->
-		<plan name="play_game_plan">
+		<!--<plan name="play_game_plan">
 			<body class="PlayGamePlan"/>
 		</plan>
-
-		<!-- Make a move on the board and create a subgoal for the next move. -->
 		<plan name="move_plan">
 			<parameter name="move" class="Move">
-				<bindingoptions>$beliefbase.board.getPossibleMoves()</bindingoptions>
+				<bindingoptions>$beliefbase.world.getPossibleMoves()</bindingoptions>
 			</parameter>
 			<parameter name="depth" class="int">
 				<goalmapping ref="makemove.depth"/>
@@ -85,7 +61,6 @@
 			</trigger>
 		</plan>
 
-		<!-- Meta-level plan used to choose among the possible move plans. -->
 		<plan name="choose_move_plan">
 			<parameterset name="applicables" class="ICandidateInfo">
 				<goalmapping ref="choosemove.applicables"/>
@@ -97,7 +72,7 @@
 			<trigger>
 				<goal ref="choosemove"/>
 			</trigger>
-		</plan>
+		</plan>-->
 	</plans>
 
 	<properties>
@@ -105,7 +80,7 @@
 	</properties>
 
 	<configurations>
-		<configuration name="5x5 board (standard)" >
+		<!--<configuration name="5x5 board (standard)" >
 			<beliefs>
 				<initialbelief ref="board">
  					<fact>new Board(5)</fact>
@@ -154,6 +129,6 @@
 			<plans>
 				<initialplan name="start_playing" ref="play_game_plan"/>
 			</plans>
-		</configuration>
+		</configuration>-->
 	</configurations>
 </agent>

@@ -2,10 +2,9 @@ package evacuation.world;
 
 public class World {
 
-	public int width, height;
+	public int size;
 	
 	public World(int worldSize) {
-		width = worldSize;
-		height = worldSize;
+		this.size = worldSize;
 	}
 }

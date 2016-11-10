@@ -2,6 +2,7 @@ package evacuation.world;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -28,7 +29,7 @@ public class WorldGUIPanel extends JPanel {
 	/** The image icons. */
 	public static final UIDefaults icons = new UIDefaults(new Object[]
 	{
-		"chaotic_agent", SGUI.makeIcon(WorldGUIPanel.class, "../../../../resources/img/default.png"),
+		"chaotic_agent", new ImageIcon("resources/img/default.png", "default"),
 		"neutral_agent", SGUI.makeIcon(WorldGUIPanel.class, "/resources/img/default.png"),
 		"passive_agent", SGUI.makeIcon(WorldGUIPanel.class, "/resources/img/default.png"),
 		"wall", SGUI.makeIcon(WorldGUIPanel.class, "/resources/img/default.png"),
@@ -49,14 +50,8 @@ public class WorldGUIPanel extends JPanel {
 	{
 		this.listeners = new ArrayList();
 		this.board = world;
-		
-		final File f = new File(WorldGUIPanel.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		System.out.print(f.getAbsolutePath());
-		
-//		ImageIcon test = (ImageIcon)icons.getIcon("chaotic_agent");
-//		System.out.println(test.getImage());
-				
-//		this.chaotic_agent_img	= ((ImageIcon)icons.getIcon("chaotic_agent")).getImage();
+
+		this.chaotic_agent_img	= ((ImageIcon)icons.getIcon("chaotic_agent")).getImage();
 //		this.neutral_agent_img	= ((ImageIcon)icons.getIcon("neutral_agent")).getImage();
 //		this.passive_agent_img	= ((ImageIcon)icons.getIcon("passive_agent")).getImage();
 //		this.wall_img	= ((ImageIcon)icons.getIcon("wall")).getImage();
@@ -72,13 +67,13 @@ public class WorldGUIPanel extends JPanel {
 //		this.fire = new JLabel(new ImageIcon(fire_img), JLabel.CENTER);
 //		this.emergency_exit_sign = new JLabel(new ImageIcon(emergency_exit_sign_img), JLabel.CENTER);
 //
-//		this.addComponentListener(new ComponentAdapter()
-//		{
-//			public void	componentResized(ComponentEvent ce)
-//			{
-//				rescale	= true;
-//			}
-//		});
+		this.addComponentListener(new ComponentAdapter()
+		{
+			public void	componentResized(ComponentEvent ce)
+			{
+				rescale	= true;
+			}
+		});
 //
 //		this.addMouseListener(new MouseAdapter()
 //		{
@@ -110,12 +105,12 @@ public class WorldGUIPanel extends JPanel {
 	}
 
 	// Paint method (override)
-	protected void	paintComponent(Graphics g)
+	protected void	paintComponent(Graphics g, World world)
 	{
-//		int bsize = world.getSize();
-//		Rectangle	bounds	= getBounds();
-//		double cellw = bounds.getWidth()/(double)bsize;
-//		double cellh = bounds.getHeight()/(double)bsize;
+		int worldSize = world.size;
+		Rectangle bounds = getBounds();
+		double cellw = bounds.getWidth()/(double)worldSize;
+		double cellh = bounds.getHeight()/(double)worldSize;
 //
 //		// Rescale images if necessary.
 //		if(rescale)
@@ -130,8 +125,9 @@ public class WorldGUIPanel extends JPanel {
 //			rescale	= false;
 //		}
 //
-//		g.setColor(getBackground());
-//		g.fillRect(0,0,bounds.width, bounds.height);
+		g.setColor(getBackground());
+		g.fillRect(0, 0, bounds.width, bounds.height);
+		SGUI.renderObject(g, chaotic_agent, cellw, cellh, 1, 1, 0);
 //
 //		java.util.List pieces = board.getCurrentPosition();
 //		for(int y=0; y<bsize; y++)
@@ -231,6 +227,7 @@ public class WorldGUIPanel extends JPanel {
 	 *  Add a new action listener.
 	 *  @param listener The listener.
 	 */
+	@SuppressWarnings("unchecked")
 	public void addActionListener(ActionListener listener)
 	{
 		this.listeners.add(listener);
@@ -243,23 +240,5 @@ public class WorldGUIPanel extends JPanel {
 	public void removeActionListener(ActionListener listener)
 	{
 		this.listeners.remove(listener);
-	}
-
-	public static void main(String[] args)
-	{
-		World world = new World(5);
-		WorldGUIPanel worldPanel = new WorldGUIPanel(world);
-		worldPanel.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				System.out.println("Action event: " + e);
-			}
-		});
-		JFrame frame = new JFrame();
-		frame.getContentPane().add("Center", worldPanel);
-		frame.setSize(400,400);
-		frame.setLocation(SGUI.calculateMiddlePosition(frame));
-		frame.setVisible(true);
 	}
 }
