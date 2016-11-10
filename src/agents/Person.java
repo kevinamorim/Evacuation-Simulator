@@ -1,6 +1,6 @@
-package evacuation.agents;
+package agents;
 
-import evacuation.services.IChatService;
+import services.IChatService;
 import jadex.bridge.service.annotation.Service;
 import jadex.micro.annotation.Agent;
 import jadex.micro.annotation.Description;

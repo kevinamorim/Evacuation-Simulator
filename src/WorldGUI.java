@@ -9,8 +9,6 @@ import jadex.bridge.IInternalAccess;
 import jadex.bridge.component.IMonitoringComponentFeature;
 import jadex.bridge.service.types.monitoring.IMonitoringEvent;
 import jadex.bridge.service.types.monitoring.IMonitoringService.PublishEventLevel;
-//import jadex.commons.beans.PropertyChangeEvent;
-//import jadex.commons.beans.PropertyChangeListener;
 import jadex.commons.future.IFuture;
 import jadex.commons.future.IResultListener;
 import jadex.commons.future.IntermediateDefaultResultListener;
@@ -59,7 +57,7 @@ public class WorldGUI extends JFrame {
 		this.setLocation(SGUI.calculateMiddlePosition(this));
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Teresa\\Documents\\FEUP\\5Ano\\AIAD\\workspace\\jadex-3.0.7\\src\\evacuation\\img\\wfloor2.jpg"));
+		label.setIcon(new ImageIcon("../resources/img/wfloor2.jpg"));
 		getContentPane().add(label, BorderLayout.CENTER);
 		this.setVisible(true);
 
