@@ -28,14 +28,13 @@
 	</beliefs>
 
 	<goals>
-		<!--<achievegoal name="makemove" recalculate="false">
-			<parameter name="depth" class="int"/>
+		<achievegoal name="move" recalculate="false">
 			<targetcondition>
 				$beliefbase.world.isSolution()
 			</targetcondition>
  		</achievegoal>
 
-		<metagoal name="choosemove" recalculate="false">
+		<!--<metagoal name="choosemove" recalculate="false">
 			<parameterset name="applicables" class="ICandidateInfo"/>
 			<parameterset name="result" class="ICandidateInfo" direction="out"/>
 			<trigger>
@@ -45,9 +44,10 @@
 	</goals>
 
 	<plans>
-		<!--<plan name="play_game_plan">
-			<body class="PlayGamePlan"/>
+		<plan name="play_simulation">
+			<body class="PlaySimulation"/>
 		</plan>
+		
 		<plan name="move_plan">
 			<parameter name="move" class="Move">
 				<bindingoptions>$beliefbase.world.getPossibleMoves()</bindingoptions>
@@ -61,7 +61,7 @@
 			</trigger>
 		</plan>
 
-		<plan name="choose_move_plan">
+		<!--<plan name="choose_move_plan">
 			<parameterset name="applicables" class="ICandidateInfo">
 				<goalmapping ref="choosemove.applicables"/>
 			</parameterset>
@@ -71,7 +71,7 @@
 			<body class="ChooseMovePlan"/>
 			<trigger>
 				<goal ref="choosemove"/>
-			</trigger>
+			</tri<gger>
 		</plan>-->
 	</plans>
 
@@ -80,17 +80,17 @@
 	</properties>
 
 	<configurations>
-		<!--<configuration name="5x5 board (standard)" >
+		<configuration name="Test World" >
 			<beliefs>
-				<initialbelief ref="board">
- 					<fact>new Board(5)</fact>
+				<initialbelief ref="world">
+ 					<fact>new World(5)</fact>
 				</initialbelief>
 			</beliefs>
 			<plans>
-				<initialplan name="start_playing" ref="play_game_plan"/>
+				<initialplan name="start_simulation" ref="play_simulation"/>
 			</plans>
 		</configuration>
-		<configuration name="3x3 board (no solution)">
+		<!--<configuration name="3x3 board (no solution)">
 			<beliefs>
 				<initialbelief ref="board">
  					<fact>new Board(3)</fact>
