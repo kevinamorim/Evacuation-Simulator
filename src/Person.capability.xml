@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	<H3>Shop capability for selling items.</H3>
+-->
+<capability xmlns="http://www.activecomponents.org/jadex-bdi"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.activecomponents.org/jadex-bdi
+	                    http://www.activecomponents.org/jadex-bdi-${jadex_build_version}.xsd"
+	name="Person"
+	package="evacuation.agents">
+
+	<beliefs>
+		<belief name="map" class="IMap"></belief>
+		
+		<beliefref name="position"><abstract/></beliefref>
+		<beliefref name="health"><abstract/></beliefref>
+		<beliefref name="determination"><abstract/></beliefref>
+		<beliefref name="panic"><abstract/></beliefref>
+	</beliefs>
+
+	<goals>
+		<achievegoal name="escape">
+			<targetcondition>
+				$beliefbase.map.isNearEnd($beliefbase.position);
+			</targetcondition>
+		</achievegoal>
+	</goals>
+
+	<plans>
+	</plans>
+	
+	<services>
+	</services>
+	
+	<properties>
+		<property name="logging.level">java.util.logging.Level.SEVERE</property>
+	</properties>
+	
+</capability>
