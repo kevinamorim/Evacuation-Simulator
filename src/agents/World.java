@@ -1,6 +1,6 @@
 package agents;
-import java.io.Serializable;
 
+import java.io.Serializable;
 import services.IWorld;
 
 @SuppressWarnings("serial")

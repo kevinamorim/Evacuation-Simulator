@@ -12,17 +12,19 @@
 
 	<imports>
 		<import>jadex.bdiv3x.runtime.*</import>
+		<import>ui.*</import>
+		<import>services.*</import>
 	</imports>
 
 	<beliefs>
 		<!-- The game board offers possibilities to make moves,
 			take back moves and keep track of the game history. -->
-		<belief name="world" class="WorldInterface"/>
+		<belief name="world" class="services.IWorld"/>
 
 		<!-- The gui of the game board. -->
-		<belief name="board_gui" class="jadex.commons.gui.GuiCreator">
-			<fact>new jadex.commons.gui.GuiCreator(WorldGUI.class, new Class[]{jadex.bridge.IExternalAccess.class, WorldInterface.class}, 
-				new Object[]{$scope.getExternalAccess(), $beliefbase.board})</fact>
+		<belief name="world_gui" class="jadex.commons.gui.GuiCreator">
+			<fact>new jadex.commons.gui.GuiCreator(WorldGUI.class, new Class[]{jadex.bridge.IExternalAccess.class, IWorld.class}, 
+				new Object[]{$scope.getExternalAccess(), $beliefbase.world})</fact>
 		</belief>
 	</beliefs>
 

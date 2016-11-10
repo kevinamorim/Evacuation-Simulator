@@ -61,7 +61,7 @@ public class WorldGUI extends JFrame {
 		this.setLocation(SGUI.calculateMiddlePosition(this));
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("../resources/img/wfloor2.jpg"));
+		label.setIcon(new ImageIcon(WorldGUI.class.getResource("/img/wfloor2.jpg")));
 		getContentPane().add(label, BorderLayout.CENTER);
 		this.setVisible(true);
 
