@@ -56,7 +56,7 @@ public class WorldGUI extends JFrame {
 //			final BoardControlPanel bcp = new BoardControlPanel(board, bp);
 //			this.getContentPane().add("South", bcp);
 //		}
-		this.setTitle("Puzzle Board");
+		this.setTitle("Evacuation Simulator");
 		this.setSize(800, 800);
 		this.setLocation(SGUI.calculateMiddlePosition(this));
 		
