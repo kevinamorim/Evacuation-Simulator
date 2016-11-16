@@ -15,15 +15,10 @@
 	</imports>
 
 	<beliefs>
-		<!-- The game board offers possibilities to make moves,
-			take back moves and keep track of the game history. -->
-		<belief name="board" class="WorldInterface"/>
-
-		<!-- The gui of the game board. -->
-		<belief name="board_gui" class="jadex.commons.gui.GuiCreator">
-			<fact>new jadex.commons.gui.GuiCreator(WorldGUI.class, new Class[]{jadex.bridge.IExternalAccess.class, WorldInterface.class}, 
-				new Object[]{$scope.getExternalAccess(), $beliefbase.board})</fact>
-		</belief>
+		<belief name="Position" class="Point"/>
+<!-- 		<belief name="Health" class="int"/> -->
+<!-- 		<belief name="Determination" class="int"/> -->
+<!-- 		<belief name="Panic" class="int"/> -->
 	</beliefs>
 
 	<goals>
@@ -31,9 +26,8 @@
 	</goals>
 
 	<plans>
-		<!-- Start puzzling on the board and measure the needed time. -->
-		<plan name="testing">
-			<body class="Testing"/>
+		<plan name="testing_person">
+			<body class="TestingPerson"/>
 		</plan>
 	</plans>
 
@@ -41,14 +35,20 @@
 	</properties>
 
 	<configurations>
-		<configuration name="Testing" >
+		<configuration name="TestingPerson" >
 			<beliefs>
-				<initialbelief ref="board">
- 					<fact>new World(5)</fact>
+				<initialbelief ref="Health">
+ 					<fact>100</fact>
+				</initialbelief>
+				<initialbelief ref="Determination">
+ 					<fact>80</fact>
+				</initialbelief>
+				<initialbelief ref="Panic">
+ 					<fact>20</fact>
 				</initialbelief>
 			</beliefs>
 			<plans>
-				<initialplan name="test" ref="testing"/>
+				<initialplan name="test" ref="testing_person"/>
 			</plans>
 		</configuration>
 	</configurations>
