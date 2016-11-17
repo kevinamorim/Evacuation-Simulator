@@ -32,6 +32,7 @@
                 </env:objecttype>
                 <env:objecttype name="wall">
                 	<env:property name="position"></env:property>
+                	<env:property name="size"></env:property>
                 </env:objecttype>
             </env:objecttypes>
 
@@ -50,10 +51,12 @@
 <!--                         <env:rectangle color="color" width="0.8" height="0.8" /> -->
 <!--                     </env:drawable> -->
                     <env:drawable objecttype="door" width="1.0" height="1.0">
-                    	<env:texturedrectangle layer="0" imagepath="resources/img/exitdoor.jpg" />
+                    	<env:texturedrectangle layer="1" imagepath="resources/img/exitdoor.jpg" />
                     </env:drawable>
                     <env:drawable objecttype="wall" width="1.0" height="1.0">
-                    	<env:texturedrectangle layer="0" imagepath="resources/img/wall.jpg" />
+                    	<env:property name="color" dynamic="true">new Color(255,255,0)</env:property>
+						<env:property name="size" dynamic="true">$object.size</env:property>
+                     	<env:texturedrectangle layer="0" size="size" imagepath="resources/img/wall.jpg" />
                     </env:drawable>
                     <env:prelayers>
                         <env:tiledlayer width="1" height="1" imagepath="resources/img/cfloor.jpg" />
@@ -83,22 +86,16 @@
 							<env:property name="position">new Vector2Double(6, 0)</env:property>
 						</env:object>
 						<env:object type="wall">
-							<env:property name="position">new Vector2Double(0, 0)</env:property>
+							<env:property name="position">new Vector2Double(2.5, 0)</env:property>
+							<env:property name="size">new Vector2Double(6,1)</env:property>
 						</env:object>
 						<env:object type="wall">
-							<env:property name="position">new Vector2Double(1, 0)</env:property>
+							<env:property name="position">new Vector2Double(13.5, 0)</env:property>
+							<env:property name="size">new Vector2Double(14,1)</env:property>
 						</env:object>
 						<env:object type="wall">
-							<env:property name="position">new Vector2Double(2, 0)</env:property>
-						</env:object>
-						<env:object type="wall">
-							<env:property name="position">new Vector2Double(3, 0)</env:property>
-						</env:object>
-						<env:object type="wall">
-							<env:property name="position">new Vector2Double(4, 0)</env:property>
-						</env:object>
-						<env:object type="wall">
-							<env:property name="position">new Vector2Double(5, 0)</env:property>
+							<env:property name="position">new Vector2Double(10, 20)</env:property>
+							<env:property name="size">new Vector2Double(21,1)</env:property>
 						</env:object>
                 	</env:objects>
                     <env:observers>
