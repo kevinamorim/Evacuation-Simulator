@@ -59,8 +59,11 @@
                      	<env:texturedrectangle layer="0" size="size" imagepath="resources/img/wall.jpg" />
                     </env:drawable>
                     <env:prelayers>
-                        <env:tiledlayer width="1" height="1" imagepath="resources/img/cfloor.jpg" />
+                        <env:tiledlayer width="0.05" height="0.05" imagepath="resources/img/cfloor.jpg" />
                     </env:prelayers>
+                    <env:postlayers>
+                    	<env:gridlayer width="1.0" height="1.0" color="black" />
+                    </env:postlayers>
                 </env:perspective>
             </env:perspectives>
 
@@ -77,10 +80,10 @@
     <configurations>
         <configuration name="default">
             <extensions>
-                <env:envspace name="mygc2dspace" type="gc2dspace" width="21" height="21">
+                <env:envspace name="mygc2dspace" type="gc2dspace" width="20" height="20">
                 	<env:objects>
                 		<env:object type="door">
-							<env:property name="position">new Vector2Double(18, 20)</env:property>
+							<env:property name="position">new Vector2Double(18, 19)</env:property>
 						</env:object>
 						<env:object type="door">
 							<env:property name="position">new Vector2Double(6, 0)</env:property>
@@ -91,11 +94,11 @@
 						</env:object>
 						<env:object type="wall">
 							<env:property name="position">new Vector2Double(13.5, 0)</env:property>
-							<env:property name="size">new Vector2Double(14,1)</env:property>
+							<env:property name="size">new Vector2Double(12,1)</env:property>
 						</env:object>
 						<env:object type="wall">
-							<env:property name="position">new Vector2Double(10, 20)</env:property>
-							<env:property name="size">new Vector2Double(21,1)</env:property>
+							<env:property name="position">new Vector2Double(10, 19)</env:property>
+							<env:property name="size">new Vector2Double(14,1)</env:property>
 						</env:object>
                 	</env:objects>
                     <env:observers>
